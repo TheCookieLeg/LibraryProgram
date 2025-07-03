@@ -11,6 +11,6 @@ public class Copy {
     public boolean isBorrowable() {return isBorrowable;}
     public int getID() {return ID;}
 
-    public void borrow() {isBorrowable = false;}
+    public void borrow () {isBorrowable = false;}
     public void returnToLibrary() {isBorrowable = true;}
 }
