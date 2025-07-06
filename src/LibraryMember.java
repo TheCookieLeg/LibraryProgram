@@ -33,6 +33,6 @@ public class LibraryMember {
     }
 
     public String toString() {
-        return ID + ". Name: " + this.name + ". Age: " + this.age + ". This user currently has " + getNumItemsOnLoan() + " itmes on loan";
+        return "U" + ID + ". Name: " + this.name + ". Age: " + this.age + ". This user currently has " + getNumItemsOnLoan() + " itmes on loan";
     }
 }
