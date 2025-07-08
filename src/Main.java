@@ -4,11 +4,13 @@ import java.util.Scanner;
 public class Main {
 
     private static ArrayList<LibraryMember> libraryMembers = new ArrayList<LibraryMember>();
+    private static ArrayList<Book> booksList = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
 
     public static void main (String[] args) {
 
         UserCreator.createUsers();
+        BookCreator.createBooks();
 
         start();
 
@@ -26,12 +28,13 @@ public class Main {
         System.out.println("1. View users");
         System.out.println("2. View all books");
         System.out.println("3. Log in as user");
+        System.out.println("4. Log in as staff");
 
 
         int choice = sc.nextInt();
 
         if (choice == 1) {viewUsers();}
-        else if (choice == 2) {System.out.println("Choice 2 has been chosen");}
+        else if (choice == 2) {viewBooks();}
         else if (choice == 3) {System.out.println("Choice 3 has been chosen");}
         else {
             System.out.println("Please choose a valid number");
@@ -54,7 +57,14 @@ public class Main {
         }
     }
 
+    public static void viewBooks() {
+        System.out.println("All books can be seen below");
+        System.out.println("");
+        for (Book book : booksList) {System.out.println(booksList.toString());}
+    }
+
     public static ArrayList<LibraryMember> getLibraryMembers() {
         return libraryMembers;
     }
+    public static ArrayList<Book> getBooksList() {return booksList;}
 }
