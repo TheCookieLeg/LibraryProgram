@@ -7,6 +7,8 @@ public class Main {
     private static ArrayList<Book> booksList = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
 
+    private static LibraryMember currentUser;
+
     public static void main (String[] args) {
 
         UserCreator.createUsers();
@@ -18,12 +20,12 @@ public class Main {
 
     }
 
-    public static void start() {
+    private static void start() {
         System.out.println("Hello, welcome to the interactive library system.");
-        giveOptions();
+        guestOptions();
     }
 
-    public static void giveOptions() {
+    private static void guestOptions() {
         System.out.println("What would you like to do?");
         System.out.println("1. View users");
         System.out.println("2. View all books");
@@ -35,14 +37,14 @@ public class Main {
 
         if (choice == 1) {viewUsers();}
         else if (choice == 2) {viewBooks();}
-        else if (choice == 3) {System.out.println("Choice 3 has been chosen");}
+        else if (choice == 3) {userLogIn();}
         else {
             System.out.println("Please choose a valid number");
-            giveOptions();
+            guestOptions();
         }
     }
 
-    public static void viewUsers() {
+    private static void viewUsers() {
         System.out.println("All users can be seen below");
         System.out.println();
         for (LibraryMember libraryMember : libraryMembers) System.out.println(libraryMember.toString());
@@ -50,17 +52,71 @@ public class Main {
         System.out.println("1. Go back");
 
         int choice = sc.nextInt();
-        if (choice == 1) {giveOptions();}
+        if (choice == 1) {
+            guestOptions();}
         else {
-            System.out.println("Please choose a valid number");
+            System.out.println("Please choose a valid number.");
             viewUsers();
         }
     }
 
-    public static void viewBooks() {
+    private static void viewBooks() {
         System.out.println("All books can be seen below");
-        System.out.println("");
+        System.out.println();
         for (Book book : booksList) {System.out.println(booksList.toString());}
+        System.out.println();
+        System.out.println("1. Go back");
+
+        int choice = sc.nextInt();
+        if (choice == 1) {
+            guestOptions();}
+        else {
+            System.out.println("Please choose a valid number.");
+            viewBooks();
+        }
+    }
+
+    private static void userLogIn() {
+        System.out.println("Please choose a user you want to log in as. Use the number from the ID");
+        System.out.println();
+        for (LibraryMember libraryMember : libraryMembers) System.out.println(libraryMember.toString());
+        System.out.println();
+
+        int choice = sc.nextInt();
+        if (choice <= libraryMembers.size()) {
+            currentUser = libraryMembers.get(choice - 1);
+            userOptionsScreen();
+        } else {
+            System.out.println("Please choose a valid ID.");
+            System.out.println();
+            userLogIn();
+        }
+    }
+
+    private static void userOptionsScreen() {
+        System.out.println("Hello, " + currentUser.getName() + ". What would you like to do?");
+        System.out.println();
+        System.out.println("1. Borrow a book");
+        System.out.println("2. Return a book");
+        System.out.println("3. Log out");
+
+        int choice = sc.nextInt();
+
+        if (choice == 1) {System.out.println("1. Has been chosen");}
+        else if (choice == 2) {System.out.println("2. Has been chosen");}
+        else if (choice == 3) {logOutUser();}
+        else {System.out.println("Please choose a valid number.");}
+
+    }
+
+
+
+    private static void logOutUser() {
+        if (currentUser != null) {
+            currentUser = null;
+            System.out.println("You have been logged out. Returning to guest screen...");
+            guestOptions();
+        }
     }
 
     public static ArrayList<LibraryMember> getLibraryMembers() {
