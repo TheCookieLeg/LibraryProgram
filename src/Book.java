@@ -1,11 +1,14 @@
+import java.util.ArrayList;
+
 public class Book {
     private final int BookID;
-    private int currentID;
+    private static int currentID;
     private String title;
     private String author;
+    private ArrayList<Copy> copies = new ArrayList<Copy>();
 
     public Book (String title, String author) {
-        BookID = ++currentID;
+        this.BookID = ++currentID;
         this.title = title;
         this.author = author;
     }

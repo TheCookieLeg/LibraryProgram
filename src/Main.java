@@ -63,7 +63,7 @@ public class Main {
     private static void viewBooks() {
         System.out.println("All books can be seen below");
         System.out.println();
-        for (Book book : booksList) {System.out.println(booksList.toString());}
+        for (Book book : booksList) {System.out.println(book.toString());}
         System.out.println();
         System.out.println("1. Go back");
 
@@ -102,13 +102,22 @@ public class Main {
 
         int choice = sc.nextInt();
 
-        if (choice == 1) {System.out.println("1. Has been chosen");}
+        if (choice == 1) {userBorrowBook();}
         else if (choice == 2) {System.out.println("2. Has been chosen");}
         else if (choice == 3) {logOutUser();}
         else {System.out.println("Please choose a valid number.");}
 
     }
 
+    private static void userBorrowBook() {
+        System.out.println("Which book would you like to borrow?");
+        System.out.println();
+        for (Book book : booksList) System.out.println(book.toString());
+
+        int choice = sc.nextInt();
+
+
+    }
 
 
     private static void logOutUser() {
