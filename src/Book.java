@@ -7,14 +7,27 @@ public class Book {
     private String author;
     private ArrayList<Copy> copies = new ArrayList<Copy>();
 
-    public Book (String title, String author) {
+    public Book (String title, String author, int numberOfCopies) {
         this.BookID = ++currentID;
         this.title = title;
         this.author = author;
+
+        for (int i = 0; i < numberOfCopies; i++) {
+            copies.add(new Copy(this));
+        }
+    }
+
+    private int copiesAvailable() {
+        int numberOfCopiesAvailable = 0;
+        for (Copy copy : copies) {
+            if (copy.isBorrowable())
+                numberOfCopiesAvailable++;
+        }
+        return numberOfCopiesAvailable;
     }
 
     @Override
     public String toString() {
-        return "B" + this.BookID + ". " + this.title + " written by " + this.author;
+        return "B" + this.BookID + ". " + this.title + " written by " + this.author + ". We have " + copies.size() + " copies of this book. Currently, " + copiesAvailable() + " copies are available";
     }
 }
