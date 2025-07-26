@@ -26,6 +26,19 @@ public class Book {
         return numberOfCopiesAvailable;
     }
 
+    public boolean availableCopy() {
+        for (Copy copy : copies) {
+            if (copy.isBorrowable()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void BorrowCopy() {
+
+    }
+
     @Override
     public String toString() {
         return "B" + this.BookID + ". " + this.title + " written by " + this.author + ". We have " + copies.size() + " copies of this book. Currently, " + copiesAvailable() + " copies are available";

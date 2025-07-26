@@ -116,7 +116,16 @@ public class Main {
 
         int choice = sc.nextInt();
 
+        if (choice <= booksList.size()) {
+            System.out.println("Book chosen");
+            if (booksList.get(choice - 1).availableCopy()) {
 
+            }
+        }
+        else {
+            System.out.println("Please choose a valid ID");
+            userBorrowBook();
+        }
     }
 
 
