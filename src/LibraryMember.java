@@ -19,11 +19,10 @@ public class LibraryMember {
     public String getName() {return name;}
     public int getAge() {return age;}
     public int getNumItemsOnLoan() {return borrowedCopies.size();}
-    public void borrowCopy(Copy c) {
-        if (c.isBorrowable()) {
-            c.borrow();
-            borrowedCopies.add(c);
-        }
+    public Copy borrowCopy(Book b) {
+        Copy c = b.borrowCopy();
+        if (c != null) {return c;}
+        else {return null;}
     }
     public void returnCopy(Copy c) {
         if (borrowedCopies.contains(c)) {
@@ -31,6 +30,8 @@ public class LibraryMember {
             borrowedCopies.remove(c);
         }
     }
+
+    public ArrayList<Copy> getBorrowedCopies() {return borrowedCopies;}
 
     public String toString() {
         return "U" + ID + ". Name: " + this.name + ". Age: " + this.age + ". This user currently has " + getNumItemsOnLoan() + " items on loan";

@@ -98,13 +98,15 @@ public class Main {
         System.out.println();
         System.out.println("1. Borrow a book");
         System.out.println("2. Return a book");
-        System.out.println("3. Log out");
+        System.out.println("3. View all books on loan");
+        System.out.println("4. Log out");
 
         int choice = sc.nextInt();
 
         if (choice == 1) {userBorrowBook();}
         else if (choice == 2) {System.out.println("2. Has been chosen");}
-        else if (choice == 3) {logOutUser();}
+        else if (choice == 3) {viewUserItemsOnLoan();}
+        else if (choice == 4) {logOutUser();}
         else {System.out.println("Please choose a valid number.");}
 
     }
@@ -119,12 +121,26 @@ public class Main {
         if (choice <= booksList.size()) {
             System.out.println("Book chosen");
             if (booksList.get(choice - 1).availableCopy()) {
-
+                currentUser.getBorrowedCopies().add(booksList.get(choice - 1).borrowCopy());
+                System.out.println("Book has been borrowed!");
+                System.out.println("Going back to options screen...");
+                userOptionsScreen();
+            } else {
+                System.out.println("This book does not have any available copies. Please choose another book");
+                userBorrowBook();
             }
         }
         else {
             System.out.println("Please choose a valid ID");
             userBorrowBook();
+        }
+    }
+
+    private static void viewUserItemsOnLoan() {
+        System.out.println("Here is a list of all books you have on loan.");
+        System.out.println();
+        for (Copy copy : currentUser.getBorrowedCopies()) {
+            System.out.println(copy.toString());
         }
     }
 

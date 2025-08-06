@@ -35,9 +35,18 @@ public class Book {
         return false;
     }
 
-    public void BorrowCopy() {
-
+    public Copy borrowCopy() {
+        for(int i = 0; i < copies.size(); i++) {
+            if (copies.get(i).isBorrowable()) {
+                return copies.get(i);
+            }
+        }
+        return null;
     }
+
+    public int getBookID() {return this.BookID;}
+    public String getTitle() {return this.title;}
+    public String getAuthor() {return this.author;}
 
     @Override
     public String toString() {

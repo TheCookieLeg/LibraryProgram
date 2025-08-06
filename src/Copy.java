@@ -14,4 +14,8 @@ public class Copy {
 
     public void borrow () {isBorrowable = false;}
     public void returnToLibrary() {isBorrowable = true;}
+
+    public String toString() {
+        return "B" + copyOf.getBookID() + ". " + copyOf.getTitle() + " written by " + copyOf.getAuthor();
+    }
 }
