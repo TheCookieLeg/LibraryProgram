@@ -139,8 +139,22 @@ public class Main {
     private static void viewUserItemsOnLoan() {
         System.out.println("Here is a list of all books you have on loan.");
         System.out.println();
-        for (Copy copy : currentUser.getBorrowedCopies()) {
-            System.out.println(copy.toString());
+        if (currentUser.getBorrowedCopies().isEmpty())
+        {
+            System.out.println("You currently have no items on loan.");
+        } else {
+            for (Copy copy : currentUser.getBorrowedCopies()) {
+                System.out.println(copy.toString());
+            }
+        }
+        System.out.println();
+        System.out.println("1. Go back");
+
+        int choice = sc.nextInt();
+        if (choice == 1) {userOptionsScreen();}
+        else {
+            System.out.println("Please choose a valid option");
+            viewUserItemsOnLoan();
         }
     }
 
