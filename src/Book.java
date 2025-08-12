@@ -38,6 +38,7 @@ public class Book {
     public Copy borrowCopy() {
         for(int i = 0; i < copies.size(); i++) {
             if (copies.get(i).isBorrowable()) {
+                copies.get(i).borrow();
                 return copies.get(i);
             }
         }

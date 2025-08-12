@@ -25,10 +25,7 @@ public class LibraryMember {
         else {return null;}
     }
     public void returnCopy(Copy c) {
-        if (borrowedCopies.contains(c)) {
-            c.returnToLibrary();
-            borrowedCopies.remove(c);
-        }
+        
     }
 
     public ArrayList<Copy> getBorrowedCopies() {return borrowedCopies;}
