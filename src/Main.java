@@ -15,9 +15,6 @@ public class Main {
         BookCreator.createBooks();
 
         start();
-
-
-
     }
 
     private static void start() {
